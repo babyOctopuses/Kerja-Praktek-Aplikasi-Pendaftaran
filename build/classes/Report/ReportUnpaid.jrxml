@@ -1,0 +1,292 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="ReportUnpaid" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="47592925-b029-42a1-b47f-feb11e360312">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<queryString>
+		<![CDATA[select tschoolfee.name as 'Student Name',
+tsiswa.class ,tclass.Classname as 'Class Name',
+tteacher.name as 'Teacher Name',
+tclass.time as 'Time',
+tclass.AorB as 'A/B',
+tschoolfee.fordate as 'Latest Date',
+CURRENT_DATE() ,
+timestampdiff(month, fordate, CURRENT_DATE())
+
+from tschoolfee
+inner join tsiswa on tsiswa.id =tschoolfee.studentid
+inner join tteacher
+inner join tclass on tclass.teacherid=tteacher.id and tclass.id=tsiswa.class
+where tschoolfee.id in (select max(tschoolfee.id) from tschoolfee where tschoolfee.id=(select max(tschoolfee.id)) group by studentid) and
+not timestampdiff(month, date, CURRENT_DATE())='0' and
+not tsiswa.status = "quit"
+group by class, studentid;]]>
+	</queryString>
+	<field name="Student Name" class="java.lang.String"/>
+	<field name="class" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="Class Name" class="java.lang.String"/>
+	<field name="Teacher Name" class="java.lang.String"/>
+	<field name="Time" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="A/B" class="java.lang.String"/>
+	<field name="Latest Date" class="java.sql.Date"/>
+	<field name="CURRENT_DATE()" class="java.sql.Date"/>
+	<field name="timestampdiff(month, fordate, CURRENT_DATE())" class="java.lang.Long"/>
+	<group name="ClassID">
+		<groupExpression><![CDATA[$F{class}]]></groupExpression>
+		<groupFooter>
+			<band height="37">
+				<rectangle>
+					<reportElement mode="Opaque" x="120" y="0" width="432" height="25" backcolor="#FFFFFF" uuid="097be2e5-54de-4430-85c9-9149d5506d69"/>
+				</rectangle>
+				<textField>
+					<reportElement x="467" y="0" width="85" height="25" uuid="7e3e03aa-9ee7-4ed2-a76e-61f02b8b6752"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle"/>
+					<textFieldExpression><![CDATA[$V{ClassID_COUNT}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="130" y="0" width="100" height="25" uuid="0f317d1f-721d-4147-a172-e05713b20fcc"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle"/>
+					<textFieldExpression><![CDATA[$F{Class Name}+" Total Unpaid Students: "]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupFooter>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="76" splitType="Stretch">
+			<staticText>
+				<reportElement x="118" y="34" width="418" height="36" uuid="17b962f9-f572-40e4-b5eb-dd7986622ecf"/>
+				<text><![CDATA[e-mail :ddtc_edu@yahoo.com.
+Jl.BakarBatu no. 8 – 9 C.Telp : +62 771 23047.Tanjungpinang ( Kepri ) Indonesia 29112
+]]></text>
+			</staticText>
+			<image>
+				<reportElement x="10" y="10" width="108" height="39" uuid="ab03fc3f-3a9c-4151-afee-b7a5d34d84f8"/>
+				<imageExpression><![CDATA["D:\\course tasks\\New folder (7)\\ddtclogo2011.jpg"]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement x="118" y="10" width="418" height="23" uuid="0861ace5-3e57-44c0-a4b6-aca76f1a089a"/>
+				<textElement>
+					<font fontName="Poor Richard" size="20" isBold="true"/>
+				</textElement>
+				<text><![CDATA[dd training center]]></text>
+			</staticText>
+			<line>
+				<reportElement x="0" y="70" width="555" height="1" uuid="d09595a9-a905-49e9-b565-146d2e7c0981"/>
+				<graphicElement>
+					<pen lineWidth="1.5" lineStyle="Double" lineColor="#333333"/>
+				</graphicElement>
+			</line>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="44" splitType="Stretch">
+			<textField pattern="dd/MM/yyyy">
+				<reportElement x="436" y="24" width="100" height="20" uuid="35cb19fc-a068-4217-a2aa-208d7d36b969"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="371" y="24" width="80" height="20" uuid="cb8ae618-c01f-46ac-b3fe-0bf5b957a4ee"/>
+				<textElement textAlignment="Right"/>
+				<text><![CDATA[Print Date:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="10" y="8" width="266" height="35" uuid="88dfaee7-fea2-48e7-82aa-6144ee947bf3"/>
+				<textElement verticalAlignment="Middle">
+					<font size="18" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Unpaid Report]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="21" splitType="Stretch">
+			<rectangle>
+				<reportElement mode="Opaque" x="10" y="1" width="31" height="20" backcolor="#CCFFFF" uuid="8d6d107b-8e8f-4f96-a4b6-c7fdeaafeb07"/>
+			</rectangle>
+			<rectangle>
+				<reportElement mode="Opaque" x="467" y="1" width="85" height="20" backcolor="#CCFFFF" uuid="b567813d-aa55-4bd1-8aa9-25a82041306d"/>
+			</rectangle>
+			<rectangle>
+				<reportElement mode="Opaque" x="413" y="1" width="54" height="20" backcolor="#CCFFFF" uuid="533c63fc-1e72-486e-83ed-0312b5725d0b"/>
+			</rectangle>
+			<rectangle>
+				<reportElement mode="Opaque" x="360" y="1" width="53" height="20" backcolor="#CCFFFF" uuid="109d1f57-d20c-4f6c-9578-0d5ef48d6e3c"/>
+			</rectangle>
+			<rectangle>
+				<reportElement mode="Opaque" x="274" y="1" width="86" height="20" backcolor="#CCFFFF" uuid="661c5b2b-fd24-432f-856e-3e6b2a08f200"/>
+			</rectangle>
+			<rectangle>
+				<reportElement mode="Opaque" x="168" y="1" width="73" height="20" backcolor="#CCFFFF" uuid="25db8399-a14a-4dfc-b7d8-9bf6f7ed9e39"/>
+			</rectangle>
+			<rectangle>
+				<reportElement mode="Opaque" x="120" y="1" width="48" height="20" backcolor="#CCFFFF" uuid="70db984b-ce13-44b6-9c9a-4e6f60b27215"/>
+			</rectangle>
+			<rectangle>
+				<reportElement mode="Opaque" x="41" y="1" width="79" height="20" backcolor="#CCFFFF" uuid="b77f9d74-61e9-4193-89b5-b76ba3f38f04"/>
+			</rectangle>
+			<staticText>
+				<reportElement mode="Transparent" x="123" y="1" width="45" height="20" backcolor="#FFFFFF" uuid="0a4bc82e-d226-4fa5-b718-fd6c471f67ce"/>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[Class Id]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Transparent" x="179" y="1" width="62" height="20" backcolor="#FFFFFF" uuid="cf470822-1b15-4252-b6cb-34ade68e1cae"/>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[Class Name]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Transparent" x="284" y="1" width="76" height="20" backcolor="#FFFFFF" uuid="3b6fd06c-6da9-46d4-801c-966ac65a7753"/>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[Teacher Name]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Transparent" x="370" y="1" width="43" height="20" backcolor="#FFFFFF" uuid="0c25479b-fd3a-4c5a-9773-8150862ebdeb"/>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[Time]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Transparent" x="424" y="1" width="43" height="20" backcolor="#FFFFFF" uuid="8e9e493c-d862-435b-8dd8-22512ecb8920"/>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[Latest Date]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Transparent" x="467" y="0" width="85" height="21" backcolor="#FFFFFF" uuid="f272b139-8645-4b0a-b69d-3ed5e6416450"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[Months Unpaid]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Transparent" x="51" y="1" width="69" height="20" backcolor="#FFFFFF" uuid="386246f2-007e-47d6-bec4-88db2f70b64c"/>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[Student Name]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="10" y="0" width="31" height="20" uuid="c74e1702-6b45-45b2-bb0e-5976612a2d8c"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[No]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement mode="Opaque" x="241" y="1" width="33" height="20" backcolor="#CCFFFF" uuid="1d73d679-0f89-438a-8939-1a253c355b77"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="241" y="1" width="33" height="20" uuid="44ac6ce0-d001-4683-963d-3b8c810d0b3d"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[A/B]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="20" splitType="Stretch">
+			<rectangle>
+				<reportElement mode="Opaque" x="10" y="0" width="31" height="20" backcolor="#FFFFFF" uuid="44595a24-33e5-4891-9642-4b6af7004255"/>
+			</rectangle>
+			<rectangle>
+				<reportElement mode="Opaque" x="41" y="0" width="79" height="20" backcolor="#FFFFFF" uuid="7267908d-86c5-449e-a941-4f709566e3ce"/>
+			</rectangle>
+			<rectangle>
+				<reportElement mode="Opaque" x="360" y="0" width="53" height="20" backcolor="#FFFFFF" uuid="98a591dd-beda-489a-8d42-5388d58b6e98"/>
+			</rectangle>
+			<rectangle>
+				<reportElement mode="Opaque" x="274" y="0" width="86" height="20" backcolor="#FFFFFF" uuid="4a41a33a-9e39-4234-af50-3141d4688036"/>
+			</rectangle>
+			<rectangle>
+				<reportElement mode="Opaque" x="168" y="0" width="73" height="20" backcolor="#FFFFFF" uuid="19ad51e4-87b2-4e9e-b504-63d332b14cb7"/>
+			</rectangle>
+			<rectangle>
+				<reportElement mode="Opaque" x="467" y="0" width="85" height="20" backcolor="#FFFFFF" uuid="4eb6f853-e58c-4650-9049-03afe52020aa"/>
+			</rectangle>
+			<rectangle>
+				<reportElement mode="Opaque" x="413" y="0" width="54" height="20" backcolor="#FFFFFF" uuid="c9bd6c1d-0c72-43cd-841f-068584205d92"/>
+			</rectangle>
+			<rectangle>
+				<reportElement mode="Opaque" x="120" y="0" width="48" height="20" backcolor="#FFFFFF" uuid="b4259d03-d29d-43bd-ae3c-27a55c928121"/>
+			</rectangle>
+			<textField>
+				<reportElement x="179" y="0" width="62" height="20" backcolor="#CCFFFF" uuid="cec57792-49ef-4dff-8117-22dc7fbf8f2c"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{Class Name}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="284" y="0" width="76" height="20" backcolor="#CCFFFF" uuid="80126a1c-74ba-49b5-a1ac-210bb3cad45b"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{Teacher Name}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="370" y="0" width="43" height="20" backcolor="#CCFFFF" uuid="2bd53ba8-1b7f-4172-ad6b-314076623c80"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{Time}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="424" y="0" width="43" height="20" backcolor="#CCFFFF" uuid="0f3dda55-62cc-48a8-ac52-1f495109fb5c"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{Latest Date}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="467" y="0" width="85" height="20" backcolor="#CCFFFF" uuid="889ed8fb-090b-44e6-8863-f3cb6d75aa29"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{timestampdiff(month, fordate, CURRENT_DATE())}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="51" y="0" width="69" height="20" backcolor="#CCFFFF" uuid="9a80dbbb-5ccb-40bc-a42d-50a06fdc6ea1"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{Student Name}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="130" y="1" width="38" height="19" backcolor="#CCFFFF" uuid="6bb13d7f-f7fe-455d-b72d-c902dd46f03d"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{class}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="20" y="1" width="21" height="19" uuid="2218a1e6-f112-4550-9623-b7be5fcbacdd"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$V{REPORT_COUNT}]]></textFieldExpression>
+			</textField>
+			<rectangle>
+				<reportElement mode="Opaque" x="241" y="0" width="33" height="20" backcolor="#FFFFFF" uuid="62bdb150-94ad-4cde-b45e-4dc5bdd41fd7"/>
+			</rectangle>
+			<textField>
+				<reportElement x="241" y="0" width="33" height="20" uuid="f800a8a5-3281-4b95-b56a-4a89156e2f34"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{A/B}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="1" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="43" splitType="Stretch">
+			<textField>
+				<reportElement x="510" y="0" width="42" height="42" uuid="995ad701-fa23-47eb-a76f-239d77e59d50"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band height="23" splitType="Stretch">
+			<rectangle>
+				<reportElement mode="Opaque" x="10" y="0" width="545" height="21" backcolor="#CCFFFF" uuid="3eae5639-b509-4ace-b041-50bac97dc054"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="20" y="0" width="120" height="21" uuid="531092e1-b110-4db2-b43b-c175e1e8303d"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[Total Unpaid Students :]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="510" y="0" width="45" height="21" uuid="73ee71c5-4d1b-4aee-8409-f54f1a332e30"/>
+				<textElement verticalAlignment="Middle">
+					<font size="13" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{COLUMN_COUNT}]]></textFieldExpression>
+			</textField>
+		</band>
+	</summary>
+</jasperReport>

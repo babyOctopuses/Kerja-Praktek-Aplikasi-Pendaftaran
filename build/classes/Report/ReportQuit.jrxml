@@ -1,0 +1,304 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="ReportQuit" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="617a10c8-ceeb-4335-92de-2e98fc37873a">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<queryString>
+		<![CDATA[select tsiswa.ID, tsiswa.name, tsiswa.class AS 'Class Id', tclass.classname,tclass.time, tteacher.name as 'Teacher', tsiswa.quitdate, tsiswa.reason
+from tsiswa
+inner join tteacher
+inner join tclass on tclass.teacherid = tteacher.id
+where tsiswa.status="QUIT" and
+month(tsiswa.quitdate)=month('CURRENT_DATE()') and year(tsiswa.quitdate)=year('CURRENT_DATE()')
+group by class,DATE_FORMAt( tsiswa.quitDate, "%Y-%m");]]>
+	</queryString>
+	<field name="ID" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="name" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="Class Id" class="java.lang.String"/>
+	<field name="classname" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="time" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="Teacher" class="java.lang.String"/>
+	<field name="quitdate" class="java.sql.Date">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="reason" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<variable name="Subtotal" class="java.lang.Integer" resetType="Group" resetGroup="Class Id" calculation="Count">
+		<variableExpression><![CDATA[$F{ID}]]></variableExpression>
+	</variable>
+	<group name="Class Id">
+		<groupExpression><![CDATA[$F{Class Id}]]></groupExpression>
+	</group>
+	<group name="Class">
+		<groupExpression><![CDATA[$F{Class Id}]]></groupExpression>
+		<groupFooter>
+			<band height="35">
+				<rectangle>
+					<reportElement x="131" y="0" width="424" height="20" uuid="2ac7a3dc-f2d8-4b0a-b0dd-d89bbf4b0f4a"/>
+				</rectangle>
+				<textField>
+					<reportElement x="437" y="0" width="118" height="20" uuid="1a4e0cbf-d9f7-4d02-8c9d-ec0eab2facfa"/>
+					<textElement verticalAlignment="Middle"/>
+					<textFieldExpression><![CDATA[$V{Subtotal}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="141" y="0" width="217" height="20" uuid="df2c97b6-a16b-404d-9934-d00407e838df"/>
+					<textElement verticalAlignment="Middle"/>
+					<textFieldExpression><![CDATA[$F{Class Id}+ " Total Quit Students: "]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupFooter>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="64" splitType="Stretch">
+			<staticText>
+				<reportElement x="118" y="23" width="418" height="36" uuid="f3918b1d-348f-45f7-a797-efe99461d4d9"/>
+				<text><![CDATA[e-mail :ddtc_edu@yahoo.com.
+Jl.BakarBatu no. 8 – 9 C.Telp : +62 771 23047.Tanjungpinang ( Kepri ) Indonesia 29112
+]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="118" y="0" width="418" height="23" uuid="5de6ef39-a96d-4ed3-9b6c-e8df8e71df8f"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[dd training center]]></text>
+			</staticText>
+			<image>
+				<reportElement x="2" y="2" width="108" height="39" uuid="2f09d10a-915c-48c3-bb77-16a7722c511a"/>
+				<imageExpression><![CDATA["D:\\course tasks\\New folder (7)\\ddtclogo2011.jpg"]]></imageExpression>
+			</image>
+			<line>
+				<reportElement x="0" y="59" width="555" height="1" uuid="4cf2cd7b-18a8-4f86-bbc1-4aeccd8e863e"/>
+				<graphicElement>
+					<pen lineStyle="Double"/>
+				</graphicElement>
+			</line>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="41" splitType="Stretch">
+			<staticText>
+				<reportElement x="19" y="1" width="174" height="34" uuid="ec510c08-c2d6-4d24-a663-2c6ef72d8e62"/>
+				<textElement verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Quit Report]]></text>
+			</staticText>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement x="465" y="14" width="73" height="20" uuid="22946b04-6351-465d-a36d-1807553883d6"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="398" y="14" width="64" height="20" uuid="e930bf8b-52b7-4d95-b1fb-a8e7c61c34b7"/>
+				<textElement textAlignment="Right"/>
+				<text><![CDATA[Print Date:]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="20" splitType="Stretch">
+			<rectangle>
+				<reportElement x="131" y="0" width="35" height="20" backcolor="#CCFFFF" uuid="9f23800a-12b2-46a4-890c-7b7a7aac9d59"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="421" y="0" width="134" height="20" backcolor="#CCFFFF" uuid="f72f55b8-b902-4914-9edf-fddded09cd97"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="358" y="0" width="63" height="20" backcolor="#CCFFFF" uuid="0777a43b-2764-4480-8976-493a8ddcb5ec"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="285" y="0" width="73" height="20" backcolor="#CCFFFF" uuid="c5f7cb57-7769-42f5-957e-bf778c546b21"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="219" y="0" width="66" height="20" backcolor="#CCFFFF" uuid="e6b0dec5-afd6-435c-816e-2992ddfd5fbc"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="166" y="0" width="53" height="20" backcolor="#CCFFFF" uuid="6f4def9e-225a-4b5d-ae3a-8ad00b7ec70c"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="31" y="0" width="41" height="20" backcolor="#CCFFFF" uuid="543f98e9-4fa2-41af-8651-a7fd844f3a5a"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="72" y="0" width="59" height="20" backcolor="#CCFFFF" uuid="05161a26-9c24-44f6-a3e2-bf56628711f1"/>
+			</rectangle>
+			<rectangle>
+				<reportElement mode="Opaque" x="1" y="0" width="30" height="20" backcolor="#CCFFFF" uuid="b5063599-19e0-4eaa-9f0a-82f3c4e40255"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="11" y="0" width="20" height="20" uuid="74694011-0802-4321-bb12-4e62be402c84"/>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[No]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="43" y="1" width="29" height="19" uuid="9f331efa-885b-46d2-ae2d-0fb7fc8c4e2e"/>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[ID]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="82" y="0" width="49" height="20" uuid="a40f8d28-cd26-41f8-896f-0c0c834619d3"/>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Name]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="176" y="0" width="43" height="20" uuid="1e9ba50b-62cc-4582-80a3-1ca713945ac3"/>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Class name]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="229" y="0" width="57" height="20" uuid="8cf03d2b-f7f8-4ede-94ea-660a3a00924f"/>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Time]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="296" y="0" width="62" height="20" uuid="be4eccf7-405f-447f-be33-8d5bc3a28c9a"/>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Teacher]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="371" y="0" width="50" height="20" uuid="b648decd-61a4-4f1c-9b7d-28849f1d1118"/>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Quitdate]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="437" y="0" width="118" height="20" uuid="8d4d846b-a0c9-41f9-843e-4e0dae85d049"/>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Reason]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="141" y="0" width="25" height="20" uuid="60db3556-e511-4752-b5bb-8191c6b3d6a6"/>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[CID]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="20" splitType="Stretch">
+			<rectangle>
+				<reportElement mode="Transparent" x="31" y="0" width="41" height="20" backcolor="#FFFFFF" uuid="1b76f435-f2f8-407c-a89c-e72260c17f15"/>
+			</rectangle>
+			<rectangle>
+				<reportElement mode="Transparent" x="421" y="0" width="134" height="20" backcolor="#FFFFFF" uuid="6f635d3e-d1f6-4ec1-a6db-a4c80d0a43fd"/>
+			</rectangle>
+			<rectangle>
+				<reportElement mode="Transparent" x="358" y="0" width="63" height="20" backcolor="#FFFFFF" uuid="897b4478-1921-4a03-8e9c-c7bb167be97b"/>
+			</rectangle>
+			<rectangle>
+				<reportElement mode="Transparent" x="285" y="0" width="73" height="20" backcolor="#FFFFFF" uuid="6ecddb9e-ea2e-437b-b9cf-aac5c89013bd"/>
+			</rectangle>
+			<rectangle>
+				<reportElement mode="Transparent" x="219" y="0" width="66" height="20" backcolor="#FFFFFF" uuid="62023ad1-5789-4137-b841-50313eed58fe"/>
+			</rectangle>
+			<rectangle>
+				<reportElement mode="Transparent" x="166" y="0" width="53" height="20" backcolor="#FFFFFF" uuid="21d39a35-efd8-41b1-bcb8-961879cc2f6c"/>
+			</rectangle>
+			<rectangle>
+				<reportElement mode="Transparent" x="1" y="0" width="30" height="20" backcolor="#FFFFFF" uuid="a7ee1fa7-e77a-4f7c-b55c-c53929a59b40"/>
+			</rectangle>
+			<rectangle>
+				<reportElement mode="Transparent" x="72" y="0" width="59" height="20" backcolor="#FFFFFF" uuid="2f096c04-31a0-470d-9dbb-fafe8dc7bee5"/>
+			</rectangle>
+			<textField>
+				<reportElement x="176" y="0" width="43" height="20" uuid="04c2f280-c288-4419-b197-7f7ba6fcc158"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{classname}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="229" y="0" width="57" height="20" uuid="82001d76-b32f-41b3-a2a8-5e628395aef3"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{time}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="296" y="0" width="62" height="20" uuid="86c7a41f-4447-4844-a343-c2e13f47b421"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{Teacher}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="371" y="0" width="50" height="20" uuid="62320731-627f-460a-a2d3-dc5b5c229606"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{quitdate}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="437" y="0" width="118" height="20" uuid="008d55f3-5e6c-4735-9adb-cf0f105906cf"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{reason}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="43" y="0" width="29" height="20" uuid="0f059410-ed79-4cf9-9863-1a3caafb1e88"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{ID}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="11" y="0" width="20" height="20" uuid="116f4bae-7d36-42d0-8465-76afa46354c8"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$V{REPORT_COUNT}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="82" y="0" width="49" height="20" uuid="6f46376c-8c2a-4341-a674-1cd786bdc4d9"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{name}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="141" y="0" width="25" height="20" uuid="5acd310b-6b6a-4a2c-9bb7-7be430a01545"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{Class Id}]]></textFieldExpression>
+			</textField>
+			<rectangle>
+				<reportElement mode="Transparent" x="131" y="0" width="35" height="20" backcolor="#FFFFFF" uuid="e048a773-d6d9-4529-a3bb-b257ca25eab3"/>
+			</rectangle>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="16" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="20" splitType="Stretch">
+			<textField>
+				<reportElement x="436" y="0" width="100" height="20" uuid="6a822df8-bd4b-4285-b689-201a571d22c6"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band height="20" splitType="Stretch">
+			<textField>
+				<reportElement x="436" y="0" width="100" height="20" uuid="bc371499-1cc3-4ad9-8712-6099bc844ffe"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$V{COLUMN_COUNT}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="19" y="0" width="100" height="20" uuid="ef8210c0-7906-4221-abf1-2f7fe75b512e"/>
+				<text><![CDATA[Total Quit Students :]]></text>
+			</staticText>
+		</band>
+	</summary>
+</jasperReport>

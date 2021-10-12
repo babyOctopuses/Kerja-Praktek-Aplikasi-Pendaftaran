@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="ReportSchoolFee" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="8a45b7e3-b1c3-4a2d-a706-6677e01a5cff">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="2"/>
+	<queryString language="SQL">
+		<![CDATA[select * from tschoolfee]]>
+	</queryString>
+	<field name="Id" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="StudentId" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="Name" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="Date" class="java.sql.Date">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="Groups" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="ForMonth" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="ForYear" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="ForClass" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="Description" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="UserLog" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="Total" class="java.lang.Long">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="Category" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="47" splitType="Stretch">
+			<staticText>
+				<reportElement x="169" y="0" width="217" height="46" uuid="f54f1bfa-168c-4798-b469-5a701e3aad45"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="20"/>
+				</textElement>
+				<text><![CDATA[School Fee Report]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="56" splitType="Stretch">
+			<image>
+				<reportElement x="4" y="4" width="108" height="39" uuid="c56389a1-4996-44c1-9935-ec70ddc00ab8"/>
+				<imageExpression><![CDATA["D:\\course tasks\\New folder (7)\\ddtclogo2011.jpg"]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement x="125" y="3" width="426" height="46" uuid="811bfddd-90bb-4c9a-9798-5d3e7bcf6b4f"/>
+				<textElement>
+					<font isBold="true" isUnderline="true"/>
+				</textElement>
+				<text><![CDATA[dd training center
+e-mail :ddtc_edu@yahoo.com.
+Jl.BakarBatu no. 8 – 9 C.Telp : +62 771 23047.Tanjungpinang ( Kepri ) Indonesia 29112
+]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="61" splitType="Stretch">
+			<rectangle>
+				<reportElement x="0" y="2" width="555" height="59" backcolor="#CCFFFF" uuid="18146903-cf6a-4314-8da7-5fd22a3fd384"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="0" y="29" width="47" height="20" uuid="547d4409-8054-4088-aae4-10f56ba3720f"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[Id]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="47" y="29" width="41" height="20" uuid="77357291-8cdd-417a-83cf-86220387ff7b"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[StudentId]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="88" y="29" width="90" height="20" uuid="14f5abbb-4b15-456e-91c6-bf482364ebf5"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[Name]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="178" y="29" width="59" height="20" uuid="5018a353-55e7-471a-bc69-cdbf6064e69f"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[Date]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="237" y="29" width="48" height="20" uuid="c9ba573a-baa6-49c9-92e0-ff1af238f4dd"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[Groups]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="285" y="29" width="53" height="20" uuid="81f820cd-b7f1-4d77-8611-4a8fecc70046"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[ForMonth]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="338" y="29" width="48" height="20" uuid="f191e699-2939-49ab-972f-76d9a707f350"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[ForYear]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="386" y="29" width="58" height="20" uuid="af5e8ab8-0b7d-4774-9fd4-a7913d2b7a13"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[Total]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="444" y="29" width="58" height="20" uuid="d1ede6cf-e8d7-4f8f-99c2-e35ade34e053"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[UserLog]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="502" y="29" width="53" height="20" uuid="d0cc039f-f865-4360-b70b-ba70b588b07f"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[Category]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="28" splitType="Stretch">
+			<rectangle>
+				<reportElement x="0" y="0" width="555" height="28" uuid="092a12a7-2681-4b76-86da-1554c32719c2"/>
+			</rectangle>
+			<textField>
+				<reportElement x="8" y="8" width="39" height="20" uuid="53235c9a-d66f-4ba9-84e5-051c115ec934"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{Id}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="47" y="8" width="41" height="20" uuid="4592d154-e51a-46d7-92ee-e00e861e5ef8"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{StudentId}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="88" y="8" width="90" height="20" uuid="dd626a42-533e-4eee-8109-007b1bc103b3"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{Name}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="178" y="8" width="59" height="20" uuid="9a32a082-9a96-4894-9db0-da89ced63828"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{Date}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="237" y="8" width="48" height="20" uuid="c8984fd9-c454-4351-a54b-babf36e83978"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{Groups}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="285" y="8" width="53" height="20" uuid="ce0ffd94-582e-4d41-9526-356cc553d1bf"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{ForMonth}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="338" y="8" width="48" height="20" uuid="76da4086-22e2-44e5-aa5c-fe1000678d3a"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{ForYear}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="386" y="8" width="58" height="20" uuid="b15335a0-0232-41b8-96b3-4f30ec169568"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{Total}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="444" y="8" width="58" height="20" uuid="59cd3beb-b455-447c-a759-13bddf46e9f3"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{UserLog}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="502" y="8" width="53" height="20" uuid="2d113915-43b8-4b42-8a44-0b70c1642284"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{Category}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

@@ -1,0 +1,245 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="reportNewTeacher" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="0ab867d4-04d7-41ef-8fc1-53b196da8c53">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<queryString language="SQL">
+		<![CDATA[select * from tteacher
+where
+status="Active" and
+month(tteacher.startingdate)=month(Current_date()) and year(tteacher.startingdate)=year(Current_date())]]>
+	</queryString>
+	<field name="Id" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="Name" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="Address" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="Phone" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="Birthday" class="java.sql.Date">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="StartingDate" class="java.sql.Date">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="Category" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<variable name="Subtotal" class="java.lang.Integer" calculation="Count"/>
+	<group name="Id">
+		<groupExpression><![CDATA[$F{Id}]]></groupExpression>
+		<groupFooter>
+			<band height="21">
+				<rectangle>
+					<reportElement x="1" y="1" width="554" height="20" uuid="cbdceba3-2f3c-4650-81c2-9c0b7f5c6521"/>
+				</rectangle>
+				<textField>
+					<reportElement x="479" y="0" width="63" height="20" uuid="b380bd14-9af8-484c-b4c7-acb72cda2ad2"/>
+					<textElement verticalAlignment="Middle"/>
+					<textFieldExpression><![CDATA[$V{COLUMN_COUNT}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="21" y="1" width="100" height="20" uuid="83566af6-c42c-4733-a84d-ce8c8bf6ada0"/>
+					<textElement verticalAlignment="Middle"/>
+					<text><![CDATA[New Teacher Total:]]></text>
+				</staticText>
+			</band>
+		</groupFooter>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch">
+			<staticText>
+				<reportElement x="124" y="11" width="418" height="23" uuid="148f383c-2faf-4b7f-8d58-17ecae72a4d8"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[dd training center]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="124" y="34" width="418" height="36" uuid="69a4012e-9a50-45af-b8bd-a04648f4b16a"/>
+				<text><![CDATA[e-mail :ddtc_edu@yahoo.com.
+Jl.BakarBatu no. 8 – 9 C.Telp : +62 771 23047.Tanjungpinang ( Kepri ) Indonesia 29112
+]]></text>
+			</staticText>
+			<image>
+				<reportElement x="0" y="11" width="124" height="58" uuid="4cc191c2-1a39-455b-97d9-03f548d6ca95"/>
+				<imageExpression><![CDATA["D:\\course tasks\\New folder (7)\\ddtclogo2011.jpg"]]></imageExpression>
+			</image>
+			<line>
+				<reportElement x="0" y="69" width="555" height="1" uuid="e96fb358-3c65-457a-a99e-6fec8609a138"/>
+				<graphicElement>
+					<pen lineWidth="1.5" lineStyle="Double" lineColor="#333333"/>
+				</graphicElement>
+			</line>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="45" splitType="Stretch">
+			<staticText>
+				<reportElement x="1" y="6" width="212" height="38" uuid="a108db37-fefc-4006-adb2-d7b59c51eeda"/>
+				<textElement verticalAlignment="Middle">
+					<font size="18" isBold="true"/>
+				</textElement>
+				<text><![CDATA[New Teachers]]></text>
+			</staticText>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement x="455" y="24" width="89" height="20" uuid="0befc0c2-5c10-417a-9f22-ab143a8d43b8"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="386" y="24" width="100" height="20" uuid="0b1f6fd3-3de6-4686-a12a-8d32bd1b2da3"/>
+				<textElement textAlignment="Right"/>
+				<text><![CDATA[Print Date:]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="20" splitType="Stretch">
+			<rectangle>
+				<reportElement x="0" y="0" width="555" height="20" backcolor="#CCFFFF" uuid="58e28f14-2930-49ae-bf0e-281d91b84fb1"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="413" y="0" width="56" height="20" uuid="d44c8516-a33d-41c2-bc67-476ca64f2505"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Times New Roman"/>
+				</textElement>
+				<text><![CDATA[StartingDate]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="479" y="0" width="63" height="20" uuid="f989f186-c1c6-4b0c-b450-1b1b07fa060a"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Times New Roman"/>
+				</textElement>
+				<text><![CDATA[Category]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="68" y="0" width="29" height="20" uuid="bae794ad-fc69-4ee4-ad02-4347d2a1f5b5"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Times New Roman"/>
+				</textElement>
+				<text><![CDATA[Id]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="178" y="0" width="89" height="20" uuid="9061ec11-b7bb-4b45-91b5-ee8a779f9cc8"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Times New Roman"/>
+				</textElement>
+				<text><![CDATA[Address]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="277" y="0" width="56" height="20" uuid="71521697-e4a9-40e7-a0ad-b6a941851e66"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Times New Roman"/>
+				</textElement>
+				<text><![CDATA[Phone]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="107" y="0" width="61" height="20" uuid="ce37d4e3-3330-4ea5-8b81-46bf1f1edb85"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Times New Roman"/>
+				</textElement>
+				<text><![CDATA[Name]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="343" y="0" width="60" height="20" uuid="67a28d31-2ac1-4398-91bb-5c1ae31ba96b"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Times New Roman"/>
+				</textElement>
+				<text><![CDATA[Birthday]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="21" y="0" width="36" height="20" uuid="b216accf-c539-4495-9242-72d7f182fd53"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Times New Roman"/>
+				</textElement>
+				<text><![CDATA[No]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="21" splitType="Stretch">
+			<rectangle>
+				<reportElement x="0" y="1" width="555" height="20" uuid="6ae0f3a8-c1e8-4275-97b9-7acc6669b9de"/>
+			</rectangle>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement x="413" y="0" width="56" height="20" uuid="540fafe9-8ea9-4008-b8f1-e57caeb673a6"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Times New Roman"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{StartingDate}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="479" y="0" width="63" height="20" uuid="caf03bd5-34c6-4928-a8b4-0d78be6a2c59"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Times New Roman"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Category}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="68" y="0" width="29" height="20" uuid="6e0c7b90-caac-4b41-af73-a9332528a911"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Times New Roman"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Id}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="178" y="0" width="89" height="20" uuid="993ae775-4e98-49eb-a506-7131fef20d3f"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Times New Roman"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Address}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="277" y="0" width="56" height="20" uuid="f5d4e2d3-6fe8-436a-87cb-6865b0116637"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Times New Roman"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Phone}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="107" y="0" width="61" height="20" uuid="76af3f62-86a9-4ab5-aba5-382d440b7973"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Times New Roman"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Name}]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement x="343" y="0" width="60" height="20" uuid="64ea526a-6438-4215-aa96-81b0e01bfbea"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Times New Roman"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Birthday}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="21" y="0" width="36" height="20" uuid="648e558c-32ed-4817-bd1f-e2b4bde30f73"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Times New Roman"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{REPORT_COUNT}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="22" splitType="Stretch">
+			<textField>
+				<reportElement x="442" y="0" width="100" height="20" uuid="e1d96fd7-9fcf-4b11-b69d-1b2d417d0bd2"/>
+				<textFieldExpression><![CDATA[$V{PAGE_COUNT}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

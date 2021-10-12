@@ -1,0 +1,292 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="ReportClass" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="ef618fd9-3807-40c1-96af-cc17ed378a39">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<queryString>
+		<![CDATA[select tclass.id, tclass.classname, tclass.aorb, tclass.teacherid, tteacher.name,  tclass.time, count(tsiswa.id)
+from tclass
+inner join tsiswa on tsiswa.class=tclass.id
+inner join tteacher on tclass.teacherid = tteacher.id
+where not tclass.id='dis'
+group by tclass.id]]>
+	</queryString>
+	<field name="id" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="classname" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="aorb" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="teacherid" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="name" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="time" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="count(tsiswa.id)" class="java.lang.Long"/>
+	<variable name="subtotal" class="java.lang.Integer" resetType="Group" resetGroup="Teacher" calculation="Count">
+		<variableExpression><![CDATA[$F{teacherid}]]></variableExpression>
+	</variable>
+	<group name="Teacher">
+		<groupExpression><![CDATA[$F{teacherid}]]></groupExpression>
+		<groupFooter>
+			<band height="31">
+				<rectangle>
+					<reportElement x="252" y="0" width="271" height="20" uuid="84b08e81-e8b7-4132-9767-a527ac39dcfc"/>
+				</rectangle>
+				<textField>
+					<reportElement x="252" y="0" width="100" height="20" uuid="7824f393-d8cf-42ea-a064-938e530f0dfd"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle"/>
+					<textFieldExpression><![CDATA[$F{name} + " has : "]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="437" y="0" width="85" height="20" uuid="a4e3d4f9-e297-4bec-93d1-2d54e73de422"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle"/>
+					<text><![CDATA[Classes]]></text>
+				</staticText>
+				<textField pattern="">
+					<reportElement x="378" y="0" width="46" height="20" uuid="9610f4ab-484d-4d63-8d07-61fc8526905c"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle"/>
+					<textFieldExpression><![CDATA[$V{subtotal}]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupFooter>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch">
+			<line>
+				<reportElement x="3" y="70" width="552" height="1" uuid="1ebf059f-abb7-42f0-8265-1c02c5f00ef9"/>
+				<graphicElement>
+					<pen lineWidth="1.5" lineStyle="Double" lineColor="#333333"/>
+				</graphicElement>
+			</line>
+			<image>
+				<reportElement x="20" y="10" width="109" height="39" uuid="a4fdb4fa-6a95-4070-a44a-6021832d9c0b"/>
+				<imageExpression><![CDATA["D:\\course tasks\\New folder (7)\\ddtclogo2011.jpg"]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement x="128" y="10" width="419" height="23" uuid="9087a512-f2be-4cc4-8e92-578b45a2a2d0"/>
+				<textElement>
+					<font fontName="Poor Richard" size="20" isBold="true"/>
+				</textElement>
+				<text><![CDATA[dd training center]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="128" y="35" width="419" height="36" uuid="9064acdf-d74b-4b65-88a9-2931cb8d25ca"/>
+				<text><![CDATA[e-mail :ddtc_edu@yahoo.com.
+Jl.BakarBatu no. 8 – 9 C.Telp : +62 771 23047.Tanjungpinang ( Kepri ) Indonesia 29112
+]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="35" splitType="Stretch">
+			<staticText>
+				<reportElement x="30" y="1" width="266" height="34" uuid="a7654d70-6cd9-42b7-a514-b0bacc56c062"/>
+				<textElement verticalAlignment="Middle">
+					<font size="18" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Classes Report]]></text>
+			</staticText>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement x="422" y="15" width="101" height="20" uuid="2fbf7713-4a93-4832-9967-a64ceadce886"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="343" y="15" width="81" height="20" uuid="9e37e536-7a1e-411f-83f5-22fc7a2208f4"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle"/>
+				<text><![CDATA[Print Date:]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="20" splitType="Stretch">
+			<rectangle>
+				<reportElement mode="Opaque" x="30" y="0" width="34" height="20" backcolor="#CCFFFF" uuid="6b003442-f95f-4e7a-bb32-7be67a82fc69"/>
+			</rectangle>
+			<rectangle>
+				<reportElement mode="Opaque" x="424" y="0" width="99" height="20" backcolor="#CCFFFF" uuid="64267809-d285-4b43-a0ea-8e3920158163"/>
+			</rectangle>
+			<rectangle>
+				<reportElement mode="Opaque" x="64" y="0" width="44" height="20" backcolor="#CCFFFF" uuid="682ae8eb-d223-4e1c-8d5b-9b3bcc6938b6"/>
+			</rectangle>
+			<rectangle>
+				<reportElement mode="Opaque" x="108" y="0" width="103" height="20" backcolor="#CCFFFF" uuid="05a6ae53-f327-4edf-9186-d497d9bfce31"/>
+			</rectangle>
+			<rectangle>
+				<reportElement mode="Opaque" x="211" y="0" width="41" height="20" backcolor="#CCFFFF" uuid="10d1e95d-2ed1-4f9f-826e-1ba0c9596cb6"/>
+			</rectangle>
+			<rectangle>
+				<reportElement mode="Opaque" x="252" y="0" width="44" height="20" backcolor="#CCFFFF" uuid="e69b55f9-d001-4ca9-b0d8-cf6c46b43051"/>
+			</rectangle>
+			<rectangle>
+				<reportElement mode="Opaque" x="296" y="0" width="72" height="20" backcolor="#CCFFFF" uuid="063c4929-9703-493e-9bef-2766c238e570"/>
+			</rectangle>
+			<rectangle>
+				<reportElement mode="Opaque" x="368" y="0" width="56" height="20" backcolor="#CCFFFF" uuid="94f6c2ee-ef3b-4522-a063-a3c85853c29b"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="41" y="0" width="23" height="20" uuid="8e107b39-a71b-4670-8a49-cd1f99f93eee"/>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[No]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="74" y="0" width="34" height="20" uuid="498f9d3a-11eb-4261-9b59-9cfe59dd2362"/>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[id]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="121" y="0" width="90" height="20" uuid="c459b4b7-0fdd-4220-8136-37c17d1737ae"/>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[classname]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="222" y="0" width="30" height="20" uuid="307f6969-8efb-444c-b6d4-d18e9395b749"/>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[A/B]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="259" y="0" width="37" height="20" uuid="1c222e5c-f336-45f8-9290-f510bd852dc4"/>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[T-Id]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="306" y="0" width="62" height="20" uuid="562106da-07c9-4978-9037-1f69c2e2e16f"/>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[T-Name]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="378" y="0" width="45" height="20" uuid="d9d0cf06-e742-4bcb-bac0-2bd6edd80df3"/>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[time]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="437" y="0" width="86" height="20" uuid="00ce0f90-aace-4513-aad5-ceab630a5f93"/>
+				<textElement verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[Students Total]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="20" splitType="Stretch">
+			<rectangle>
+				<reportElement mode="Transparent" x="424" y="0" width="99" height="20" backcolor="#CCFFFF" uuid="89b8051a-524c-4999-9f9e-378c9d72d555"/>
+			</rectangle>
+			<rectangle>
+				<reportElement mode="Transparent" x="296" y="0" width="72" height="20" backcolor="#CCFFFF" uuid="bcd1b78a-e983-470d-a63c-ddeecdc06a69"/>
+			</rectangle>
+			<rectangle>
+				<reportElement mode="Transparent" x="368" y="0" width="56" height="20" backcolor="#CCFFFF" uuid="76249a64-0582-4b25-a743-8c812b1ab743"/>
+			</rectangle>
+			<rectangle>
+				<reportElement mode="Transparent" x="211" y="0" width="41" height="20" backcolor="#CCFFFF" uuid="88801570-fc8a-4558-835c-e1ef6e04802b"/>
+			</rectangle>
+			<rectangle>
+				<reportElement mode="Transparent" x="252" y="0" width="44" height="20" backcolor="#CCFFFF" uuid="a4e1eb03-e256-45db-840c-554ad82525b7"/>
+			</rectangle>
+			<rectangle>
+				<reportElement mode="Transparent" x="108" y="0" width="103" height="20" backcolor="#CCFFFF" uuid="f062bb44-c114-490b-90be-b6aa90230cd5"/>
+			</rectangle>
+			<rectangle>
+				<reportElement mode="Transparent" x="64" y="0" width="44" height="20" backcolor="#CCFFFF" uuid="32a6f568-1a3f-4a41-878d-d88ddcb28730"/>
+			</rectangle>
+			<textField>
+				<reportElement x="74" y="0" width="34" height="20" uuid="4cba3cc9-5c62-4403-9b88-5445aa1f2e87"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{id}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="121" y="0" width="90" height="20" uuid="6e7732e8-af1c-4a6f-8836-e783210bee6d"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{classname}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="222" y="0" width="30" height="20" uuid="075ef5e7-2f17-41c6-af6d-fcb0076cac57"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{aorb}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="259" y="0" width="37" height="20" uuid="d458c48b-ec0c-4eab-b192-62a82da6f345"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{teacherid}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="306" y="0" width="62" height="20" uuid="68bea50a-d1d3-457b-ada5-0299b202d835"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{name}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="378" y="0" width="46" height="20" uuid="b956f925-70f0-43e6-895f-9167bb1f043a"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{time}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="437" y="0" width="86" height="20" uuid="b07a0168-1f1e-4d3d-84d3-42ed1770d770"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{count(tsiswa.id)}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="41" y="0" width="23" height="20" uuid="1c300a3c-0e14-4d60-be7d-67c8d751d00b"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$V{REPORT_COUNT}]]></textFieldExpression>
+			</textField>
+			<rectangle>
+				<reportElement mode="Transparent" x="30" y="0" width="34" height="20" backcolor="#CCFFFF" uuid="a8a973a9-adb1-49db-a656-2ed2854ae505"/>
+			</rectangle>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="3" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="21" splitType="Stretch">
+			<textField>
+				<reportElement x="455" y="0" width="68" height="20" uuid="457d82c4-e659-43c4-a28a-7717b2a1d019"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band height="46" splitType="Stretch">
+			<rectangle>
+				<reportElement x="30" y="2" width="493" height="20" uuid="15fdea1a-32d2-4385-a211-6f4863c5c358"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="41" y="2" width="100" height="20" uuid="2eb09e13-28c6-4553-afd4-d5f54122e6fd"/>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[Classes Total : ]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="437" y="2" width="85" height="20" uuid="9c9f3858-c912-429c-b401-4e36d61b88b1"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$V{COLUMN_COUNT}]]></textFieldExpression>
+			</textField>
+			<rectangle>
+				<reportElement x="30" y="22" width="493" height="20" uuid="29f65091-6a5a-49a2-be03-3b92fa86b4a8"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="41" y="22" width="100" height="20" uuid="3c823b06-da99-4ec5-937b-7d1c884ccd4e"/>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[Teachers Total : ]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="437" y="22" width="86" height="20" uuid="a65efb63-ddd5-4fbc-af5a-ba5063685004"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$V{Teacher_COUNT}]]></textFieldExpression>
+			</textField>
+		</band>
+	</summary>
+</jasperReport>

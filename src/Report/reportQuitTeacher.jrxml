@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="reportQuitTeacher" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="671954b2-f2ae-4e50-b646-146bdcf7c205">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<queryString language="SQL">
+		<![CDATA[select * from tteacher
+where
+status="quit" and
+month(tteacher.quitdate)=month(Current_date()) and year(tteacher.quitdate)=year(Current_date())]]>
+	</queryString>
+	<field name="Id" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="Name" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="StartingDate" class="java.sql.Date">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="QuitDate" class="java.sql.Date">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="Category" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<group name="Id">
+		<groupExpression><![CDATA[$F{Id}]]></groupExpression>
+		<groupFooter>
+			<band/>
+		</groupFooter>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch">
+			<staticText>
+				<reportElement x="128" y="10" width="418" height="23" uuid="223b64e9-ef27-4586-aac2-e87e16ced18c"/>
+				<textElement>
+					<font fontName="Poor Richard" size="20" isBold="true"/>
+				</textElement>
+				<text><![CDATA[dd training center]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="128" y="34" width="418" height="36" uuid="b9793ad5-f28e-44d4-a56e-5f63fae4795c"/>
+				<text><![CDATA[e-mail :ddtc_edu@yahoo.com.
+Jl.BakarBatu no. 8 – 9 C.Telp : +62 771 23047.Tanjungpinang ( Kepri ) Indonesia 29112
+]]></text>
+			</staticText>
+			<line>
+				<reportElement x="0" y="70" width="555" height="1" uuid="05829aab-8a85-4990-9a04-8d4da38c766f"/>
+				<graphicElement>
+					<pen lineWidth="1.5" lineStyle="Double" lineColor="#333333"/>
+				</graphicElement>
+			</line>
+			<image>
+				<reportElement x="20" y="10" width="108" height="39" uuid="8d940dec-5d87-44aa-b456-59600f7b782d"/>
+				<imageExpression><![CDATA["D:\\course tasks\\New folder (7)\\ddtclogo2011.jpg"]]></imageExpression>
+			</image>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="35" splitType="Stretch">
+			<staticText>
+				<reportElement x="388" y="15" width="100" height="20" uuid="59b946cb-04b4-4e02-af8a-520f209a4911"/>
+				<textElement textAlignment="Right"/>
+				<text><![CDATA[Print Date:]]></text>
+			</staticText>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement x="457" y="15" width="89" height="20" uuid="9bb6c3b9-0e56-49cd-a3be-506b191a3c08"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="1" y="0" width="212" height="35" uuid="f6e5560a-01e6-4645-9074-64986a532c69"/>
+				<textElement verticalAlignment="Middle">
+					<font size="18" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Quit Teacher REPORT]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="22" splitType="Stretch">
+			<rectangle>
+				<reportElement x="0" y="1" width="555" height="20" backcolor="#CCFFFF" uuid="2356bae3-a265-419e-930a-0766f2f5ab4b"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="61" y="0" width="46" height="20" uuid="8dfef8ac-2e55-4547-bfc9-5a8cbe1f72ae"/>
+				<textElement textAlignment="Justified" verticalAlignment="Middle"/>
+				<text><![CDATA[Id]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="107" y="0" width="100" height="20" uuid="17eabfee-c45d-478b-9549-5a1b7382c879"/>
+				<textElement textAlignment="Justified" verticalAlignment="Middle"/>
+				<text><![CDATA[Name]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="206" y="0" width="100" height="20" uuid="d5fc11da-20d2-44ca-85c8-3fdea715c8ee"/>
+				<textElement textAlignment="Justified" verticalAlignment="Middle"/>
+				<text><![CDATA[StartingDate]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="310" y="0" width="100" height="20" uuid="fb34973b-3063-4dfb-8b8b-a3ece4875ac3"/>
+				<textElement textAlignment="Justified" verticalAlignment="Middle"/>
+				<text><![CDATA[QuitDate]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="422" y="0" width="100" height="20" uuid="2184aa99-d555-4c65-93b2-cc70e8c522ec"/>
+				<textElement textAlignment="Justified" verticalAlignment="Middle"/>
+				<text><![CDATA[Category]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="10" y="2" width="40" height="20" uuid="92f6ded2-1c63-4c89-a383-92843e392d6f"/>
+				<textElement textAlignment="Justified" verticalAlignment="Middle"/>
+				<text><![CDATA[No]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="21" splitType="Stretch">
+			<rectangle>
+				<reportElement x="0" y="0" width="555" height="20" uuid="71b45eb0-876d-4ad1-8db9-3104176396d9"/>
+			</rectangle>
+			<textField>
+				<reportElement x="61" y="1" width="46" height="20" uuid="dd2b91fb-a56d-4a8e-a9ad-2c4682b5f02c"/>
+				<textElement textAlignment="Justified" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{Id}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="107" y="1" width="100" height="20" uuid="eb9e8e9a-cc4f-45f1-8f8b-3eb4dcb79052"/>
+				<textElement textAlignment="Justified" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{Name}]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement x="206" y="1" width="100" height="20" uuid="7b8ad593-bff7-4f49-b0b9-1252cbaad51d"/>
+				<textElement textAlignment="Justified" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{StartingDate}]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement x="310" y="1" width="100" height="20" uuid="6f85c8fd-e6f9-4e08-98ce-aa739132ee00"/>
+				<textElement textAlignment="Justified" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{QuitDate}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="422" y="1" width="100" height="20" uuid="a74a12c8-1b17-49fc-bf12-98295b2a0ed4"/>
+				<textElement textAlignment="Justified" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{Category}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="10" y="1" width="40" height="20" uuid="7a0ad72f-b9e5-47ce-af2e-3d2a160c60be"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$V{REPORT_COUNT}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch">
+			<textField>
+				<reportElement x="422" y="0" width="100" height="20" uuid="c38f05f5-61ff-40c8-a293-da1dab7a3794"/>
+				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band height="21" splitType="Stretch">
+			<rectangle>
+				<reportElement x="0" y="0" width="555" height="20" uuid="deb1799e-7c6f-463f-b7f2-644562872b0e"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="10" y="1" width="100" height="20" uuid="ffca4a08-4811-4a8e-b4b7-c9244fc8a8ee"/>
+				<text><![CDATA[Total Quit Teacher:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="422" y="1" width="100" height="20" uuid="65a48cde-65a3-4916-b52f-454ef9017de6"/>
+				<textFieldExpression><![CDATA[$V{COLUMN_COUNT}]]></textFieldExpression>
+			</textField>
+		</band>
+	</summary>
+</jasperReport>
